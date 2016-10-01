@@ -1,22 +1,32 @@
   // A component should produce HTML
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
+import VideoList from './components/video_list'
+const API_KEY = "";
 
 
-const API_KEY = YOUTUBE_API_KEY;
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-YTSearch({key: API_KEY, term: 'surfboards'}, function(data) {
-  console.log(data);
-});
+    this.state = { videos: [] };
 
-const App = () => {
-  return (
-    <div>
-      <SearchBar />
-    </div>
-  );
+    YTSearch({key: API_KEY, term: 'Mike Miller Olivia Selley'}, (videos) => {
+      this.setState({ videos });
+      //when the key and the value have the same string it can be condensed. this.setState({ videos: videos })
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <SearchBar />
+        <VideoList videos={this.state.videos} /> //passing a prop
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<App />, document.querySelector('.container'));
