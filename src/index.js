@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoList videos={this.state.videos} /> //passing a prop
+        <VideoList videos={this.state.videos} />
       </div>
     );
   }
