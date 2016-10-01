@@ -7,7 +7,10 @@ import YTSearch from 'youtube-api-search';
 
 const API_KEY = YOUTUBE_API_KEY;
 
-YTSearch({key: API_KEY, term: 'surfboards'}),
+YTSearch({key: API_KEY, term: 'surfboards'}, function(data) {
+  console.log(data);
+});
+
 const App = () => {
   return (
     <div>
